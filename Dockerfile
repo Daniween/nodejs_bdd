@@ -1,4 +1,4 @@
-# Utiliser une image Node.js officielle
+# Utiliser une image Node.js
 FROM node:18
 
 # Création du répertoire de travail
