@@ -1,0 +1,7 @@
+{
+    "watch": ["server.js", "app/routes", "app/controllers", "app/models"],
+    "ext": "js,json",
+    "exec": "node server.js",
+    "ignore": ["node_modules", "docker-compose.yml", "Dockerfile"]
+  }
+  

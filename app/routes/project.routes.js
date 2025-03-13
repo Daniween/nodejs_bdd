@@ -8,5 +8,4 @@ router.get('/projet/max-budget', projectController.getProjetMaxBudget);
 // Route pour les employés affectés à la fois sur le projet "Intranet" (P01) et "Site Web" (P03)
 router.get('/projet/intranet-siteweb/employes', projectController.getEmployesAffectesDeuxProjets);
 
-
 module.exports = router;

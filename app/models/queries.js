@@ -18,7 +18,7 @@ async function getProjetMaxBudget() {
 // Fonction pour les employés affectés à la fois sur les projets P01 et P03
 async function getEmployesAffectesDeuxProjets() {
   try {
-    const [results, metadata] = await sequelize.query(`
+    const [results] = await sequelize.query(`
       SELECT e.nom, e.prenom 
       FROM Employe e
       JOIN Affectation a1 ON e.numemp = a1.numemp AND a1.numprojet = 'P01'

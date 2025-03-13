@@ -3,7 +3,7 @@ version: '3'
 services:
   db:
     image: postgres:13
-    container_name: postgres_db
+    container_name: postgres_db_node
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: mysecretpassword
@@ -16,16 +16,20 @@ services:
 
   node:
     build: .
-    container_name: node_app
+    container_name: nodejs_app
     depends_on:
       - db
     ports:
       - "3000:3000"
     volumes:
-      - .:/usr/src/app
+      - .:/app
+      - /app/node_modules
     environment:
-      DATABASE_URL: postgres://postgres:mysecretpassword@db:5432/mydb
+      - DATABASE_URL=postgres://postgres:mysecretpassword@db:5432/mydb
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
     restart: unless-stopped
+    command: ["npm", "run", "dev"]
 
 
 volumes:

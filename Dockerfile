@@ -1,20 +1,23 @@
 # Utiliser une image Node.js
 FROM node:18
 
-# Création du répertoire de travail
-WORKDIR /usr/src/app
+# Définir le répertoire de travail
+WORKDIR /app
 
-# Copier les fichiers package.json et package-lock.json
+# Copier package.json et package-lock.json AVANT pour optimiser le cache
 COPY package*.json ./
 
 # Installer les dépendances
 RUN npm install
 
-# Copier le reste des fichiers du projet
+# Copier TOUT le code APRÈS l'installation (évite de refaire npm install à chaque build)
 COPY . .
 
-# Exposer le port sur lequel l'application s'exécute
+# Installer nodemon globalement
+RUN npm install -g nodemon
+
+# Exposer le port de l'application
 EXPOSE 3000
 
-# Commande pour démarrer l'application
-CMD ["npm", "start"]
+# Commande de démarrage avec Nodemon
+CMD ["npm", "run", "dev"]
